@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Deep Catalyst — Find out what you could do next</title>
-<meta name="description" content="A 15-minute conversation with an AI that takes your ambition seriously. Your agent quietly explores exceptional opportunities — you only show up for conversations worth your time." />
+<meta name="description" content="A 15-minute conversation with an AI that takes your ambition seriously. It maps what you're built for — then quietly brings you the opportunities worth your time." />
 
 <!-- ════════════════════════════════════════════
      META PIXEL / PLAUSIBLE GOES HERE before running ads
@@ -16,13 +16,13 @@
 
 <style>
   :root{
-    --ink:#11141C;        /* ground — blue-charcoal, not black */
-    --slate:#181D29;      /* raised surface */
-    --bone:#EDE8DE;       /* warm off-white text */
-    --graphite:#9AA0AD;   /* muted text */
-    --amber:#E8B34B;      /* phosphor amber — prize, CTA, key words */
-    --hairline:rgba(237,232,222,.14);
-    --maxw:1060px;
+    --ink:#11141C;
+    --slate:#171C28;
+    --bone:#EDE8DE;
+    --graphite:#9AA0AD;
+    --amber:#E8B34B;
+    --hairline:rgba(237,232,222,.10);
+    --maxw:1080px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -30,97 +30,84 @@
     background:var(--ink);
     color:var(--bone);
     font-family:"Instrument Sans",system-ui,sans-serif;
-    font-size:17px;line-height:1.6;
+    font-size:17px;line-height:1.62;
     -webkit-font-smoothing:antialiased;
   }
   ::selection{background:var(--amber);color:var(--ink)}
   a{color:inherit}
-  img{max-width:100%}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-  .mono{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite)}
-  .eyebrow{display:block;margin-bottom:1.1rem}
-  h1,h2{font-family:"Gloock",serif;font-weight:400;letter-spacing:-.01em}
-  h1{font-size:clamp(2.6rem,7.5vw,5.2rem);line-height:1.04}
-  h2{font-size:clamp(1.8rem,4.2vw,2.7rem);line-height:1.12;margin-bottom:1.2rem}
-  section{padding:5.5rem 0;border-top:1px solid var(--hairline)}
-  .lede{font-size:clamp(1.05rem,2.2vw,1.25rem);color:var(--bone);max-width:38em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  .mono{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--graphite)}
+  h1,h2{font-family:"Gloock",serif;font-weight:400;letter-spacing:-.012em}
+  h1{font-size:clamp(2.7rem,7vw,5rem);line-height:1.05}
+  h2{font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.12}
+  .lede{font-size:clamp(1.08rem,2.1vw,1.3rem);max-width:40em}
   .muted{color:var(--graphite)}
   .accent{color:var(--amber)}
 
-  /* ── header ── */
-  header{padding:1.4rem 0}
+  section{padding:6.2rem 0}
+  .band{background:var(--slate)}
+  .stack > * + *{margin-top:1.15rem}
+
+  header{padding:1.5rem 0;position:sticky;top:0;z-index:20;background:rgba(17,20,28,.82);backdrop-filter:blur(10px)}
   .bar{display:flex;justify-content:space-between;align-items:center;gap:1rem}
-  .wordmark{font-family:"IBM Plex Mono",monospace;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+  .wordmark{font-family:"IBM Plex Mono",monospace;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
   .wordmark b{color:var(--amber);font-weight:500}
 
-  /* ── buttons ── */
   .btn{
     display:inline-block;background:var(--amber);color:var(--ink);
-    font-family:"Instrument Sans",sans-serif;font-weight:600;font-size:1rem;
-    padding:.95rem 1.7rem;border-radius:4px;text-decoration:none;
-    transition:transform .15s ease, box-shadow .15s ease;
+    font-weight:600;font-size:1rem;padding:.95rem 1.7rem;border-radius:4px;
+    text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
   }
-  .btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(232,179,75,.25)}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(232,179,75,.22)}
   .btn:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
   .btn.small{padding:.55rem 1rem;font-size:.85rem}
-  .btn-note{display:block;margin-top:.8rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.1em;color:var(--graphite)}
+  .btn-note{display:block;margin-top:.85rem;font-family:"IBM Plex Mono",monospace;font-size:.73rem;letter-spacing:.1em;color:var(--graphite)}
 
-  /* ── hero ── */
-  .hero{padding:5rem 0 6rem;border-top:none}
-  .hero .lede{margin:1.6rem 0 2.2rem}
-  .status{margin-top:3.2rem;font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--graphite)}
+  .hero{padding:5rem 0 6.5rem}
+  .hero h1 span{color:var(--amber)}
+  .hero .lede{margin:1.7rem 0 2.3rem}
+
+  .dossier{margin-top:3.6rem;border:1px solid var(--hairline);background:var(--slate);border-radius:7px;padding:1.7rem 1.7rem 1.4rem;max-width:46em}
+  .dossier .label{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);margin-bottom:1rem}
+  .dossier p{font-size:clamp(1.08rem,2.3vw,1.35rem);line-height:1.85}
+  .redact{position:relative;display:inline-block;white-space:nowrap;color:var(--amber)}
+  .redact::after{content:"";position:absolute;inset:.08em -0.12em;background:var(--bone);border-radius:2px;transform-origin:left center;transform:scaleX(1)}
+  .reveal .redact::after{animation:lift .9s cubic-bezier(.7,0,.2,1) forwards}
+  .reveal .redact:nth-of-type(1)::after{animation-delay:.45s}
+  .reveal .redact:nth-of-type(2)::after{animation-delay:1.05s}
+  .reveal .redact:nth-of-type(3)::after{animation-delay:1.65s}
+  @keyframes lift{to{transform:scaleX(0);transform-origin:right center}}
+
+  .status{margin-top:2.6rem;font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--graphite)}
   .status .dot{display:inline-block;width:.5em;height:.5em;border-radius:50%;background:var(--amber);margin-right:.6em;animation:pulse 2.4s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  /* ── signature: redaction reveal ── */
-  .dossier{margin-top:3.4rem;border:1px solid var(--hairline);background:var(--slate);border-radius:6px;padding:1.6rem 1.6rem 1.3rem}
-  .dossier .label{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--graphite);margin-bottom:1rem}
-  .dossier p{font-size:clamp(1.05rem,2.4vw,1.35rem);line-height:1.9}
-  .redact{position:relative;display:inline-block;white-space:nowrap;color:var(--amber)}
-  .redact::after{
-    content:"";position:absolute;inset:.08em -0.12em;background:var(--bone);
-    border-radius:2px;transform-origin:left center;transform:scaleX(1);
-  }
-  .reveal .redact::after{animation:lift .9s cubic-bezier(.7,0,.2,1) forwards}
-  .reveal .redact:nth-of-type(1)::after{animation-delay:.5s}
-  .reveal .redact:nth-of-type(2)::after{animation-delay:1.1s}
-  .reveal .redact:nth-of-type(3)::after{animation-delay:1.7s}
-  @keyframes lift{to{transform:scaleX(0);transform-origin:right center}}
-  @media (prefers-reduced-motion: reduce){
-    .redact::after{display:none}
-    .status .dot{animation:none}
-    .btn{transition:none}
-  }
+  .head{max-width:34em;margin-bottom:2.4rem}
+  .head .mono{display:block;margin-bottom:1rem}
 
-  /* ── steps ── */
-  .steps{display:grid;gap:2.6rem;margin-top:2.6rem}
-  @media(min-width:760px){.steps{grid-template-columns:1fr 1fr 1fr;gap:2.2rem}}
-  .step .num{font-family:"Gloock",serif;font-size:2rem;color:var(--amber)}
-  .step h3{font-family:"Instrument Sans",sans-serif;font-weight:600;font-size:1.15rem;margin:.6rem 0 .5rem}
-  .step p{color:var(--graphite);font-size:.98rem}
+  .steps{display:grid;gap:2.6rem}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);gap:2.4rem}}
+  .step .num{font-family:"Gloock",serif;font-size:1.9rem;color:var(--amber);line-height:1}
+  .step h3{font-family:"Instrument Sans",sans-serif;font-weight:600;font-size:1.12rem;margin:.7rem 0 .5rem}
+  .step p{color:var(--graphite);font-size:.97rem}
 
-  /* ── prize ── */
-  .prize p{max-width:40em;margin-bottom:1.2rem}
-  blockquote{
-    margin:2.4rem 0 0;padding:1.4rem 1.6rem;border-left:2px solid var(--amber);
-    background:var(--slate);border-radius:0 6px 6px 0;max-width:42em;
-  }
-  blockquote p{font-style:italic;font-size:1.05rem;margin:0}
-  blockquote cite{display:block;margin-top:.8rem;font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.1em;color:var(--graphite)}
+  .contrast{font-family:"Gloock",serif;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.25;max-width:18em}
+  .contrast .accent{color:var(--amber)}
 
-  /* ── quiet ── */
-  .quiet-list{margin-top:2rem;display:grid;gap:1rem;max-width:40em}
-  .quiet-list li{list-style:none;padding-left:1.6rem;position:relative;color:var(--bone)}
+  .offer-list{margin-top:2rem;display:grid;gap:1.5rem;max-width:42em}
+  .offer-list li{list-style:none;padding-left:1.7rem;position:relative}
+  .offer-list li::before{content:"→";position:absolute;left:0;color:var(--amber)}
+  .offer-list b{font-weight:600}
+
+  .quiet-list{margin-top:1.9rem;display:grid;gap:1rem;max-width:40em}
+  .quiet-list li{list-style:none;padding-left:1.6rem;position:relative}
   .quiet-list li::before{content:"—";position:absolute;left:0;color:var(--amber)}
-  .kicker{margin-top:2.4rem;font-family:"Gloock",serif;font-size:1.5rem;color:var(--amber)}
+  .kicker{margin-top:2.3rem;font-family:"Gloock",serif;font-size:1.45rem;color:var(--amber)}
 
-  /* ── who ── */
-  .who p{max-width:40em;margin-bottom:1.1rem}
-  .notfor{font-family:"IBM Plex Mono",monospace;font-size:.85rem;color:var(--graphite);letter-spacing:.04em}
+  .who p{max-width:40em}
+  .notfor{font-family:"IBM Plex Mono",monospace;font-size:.84rem;color:var(--graphite);letter-spacing:.04em;margin-top:1.4rem}
 
-  /* ── faq ── */
-  details{border-bottom:1px solid var(--hairline);padding:1.1rem 0}
-  details:first-of-type{border-top:1px solid var(--hairline)}
+  details{border-bottom:1px solid var(--hairline);padding:1.15rem 0}
   summary{cursor:pointer;font-weight:600;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
   summary::-webkit-details-marker{display:none}
   summary::after{content:"+";font-family:"Gloock",serif;color:var(--amber);font-size:1.3rem;flex-shrink:0}
@@ -128,170 +115,179 @@
   details p{margin-top:.7rem;color:var(--graphite);max-width:42em}
   summary:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
 
-  /* ── final cta ── */
-  .final{text-align:left}
-  .final h2{max-width:16em}
-  .final .btn{margin-top:1.6rem}
+  .final h2{max-width:15em}
+  .final .btn{margin-top:1.7rem}
 
-  /* ── footer ── */
-  footer{border-top:1px solid var(--hairline);padding:3rem 0 3.4rem;color:var(--graphite);font-size:.9rem}
-  footer .emp{margin-bottom:1.6rem;max-width:40em}
+  footer{padding:3.4rem 0;color:var(--graphite);font-size:.9rem;background:var(--slate)}
+  footer .emp{margin-bottom:1.8rem;max-width:42em}
   footer .emp a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(232,179,75,.4)}
-  footer .legal{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;line-height:1.9}
+  footer .legal{font-family:"IBM Plex Mono",monospace;font-size:.71rem;letter-spacing:.08em;line-height:1.9}
+
+  @media (prefers-reduced-motion: reduce){
+    .redact::after{display:none}
+    .status .dot{animation:none}
+    .btn{transition:none}
+    html{scroll-behavior:auto}
+  }
 </style>
 </head>
 <body>
 
-<header class="wrap">
-  <div class="bar">
+<header>
+  <div class="wrap bar">
     <a class="wordmark" href="#top">Deep<b>Catalyst</b></a>
-    <a class="btn small cta" href="#">Talk to the AI</a>
+    <a class="btn small cta" href="#">Start the conversation</a>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero wrap">
-    <span class="mono eyebrow">A private talent platform · Estonia first</span>
-    <h1>Find out what you<br>could do next.</h1>
-    <p class="lede">A 15-minute conversation with an AI that takes your ambition seriously. Then your agent quietly explores exceptional opportunities — <span class="accent">you only show up for conversations worth your time.</span></p>
-    <a class="btn cta" href="#">Talk to the AI — 15 minutes</a>
-    <span class="btn-note">No CV. No account. Nothing goes on your record.</span>
+  <section class="hero">
+    <div class="wrap">
+      <h1>You make things happen.<br><span>Find out what you could do next.</span></h1>
+      <p class="lede">A fifteen-minute conversation with an AI that takes your ambition seriously. It maps what you're actually built for — then quietly brings you the opportunities most people never see: founder, founding team, the roles that never get posted.</p>
+      <a class="btn cta" href="#">Start the conversation — 15 minutes</a>
+      <span class="btn-note">No application. No audience. Nothing on your record.</span>
 
-    <!-- signature: the dossier -->
-    <div class="dossier" id="dossier">
-      <div class="label">From your readout · private</div>
-      <p>Based on this conversation, you could be a
-        <span class="redact">founder</span>, a
-        <span class="redact">first commercial hire</span>, or the
-        <span class="redact">seat that never gets posted</span>.
-      </p>
-    </div>
+      <div class="dossier" id="dossier">
+        <div class="label">From your readout · private</div>
+        <p>On this conversation, you could be a
+          <span class="redact">founder</span>, a
+          <span class="redact">founding engineer</span>, or the
+          <span class="redact">first hire who makes a company</span>.
+        </p>
+      </div>
 
-    <p class="status"><span class="dot"></span>agent status: exploring quietly</p>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="wrap">
-    <span class="mono eyebrow">How it works</span>
-    <h2>Three steps. One honest quarter-hour.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <h3>Talk.</h3>
-        <p>Fifteen honest minutes with an AI interviewer. No CV theater. It asks what you build when nobody assigns it, what people actually come to you for, and what you've talked yourself out of.</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <h3>See yourself clearly.</h3>
-        <p>You get a readout: your pattern, your edge, and three directions you could take — at least one you haven't considered. If we don't see founder signal, we tell you what we <em>do</em> see. No horoscopes.</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <h3>Stay quiet. Get found.</h3>
-        <p>If a real seat fits — founder of a lab-born startup, first hire, key operator — we bring it to you. Nothing is shared with anyone without your explicit yes.</p>
-      </div>
+      <p class="status"><span class="dot"></span>your agent: exploring quietly</p>
     </div>
   </section>
 
-  <!-- FLAGSHIP PRIZE -->
-  <section class="wrap prize">
-    <span class="mono eyebrow">The flagship prize</span>
-    <h2>The biggest prize on the platform: <span class="accent">founder.</span></h2>
-    <p>Estonia's universities sit on world-class research that never becomes a company — not because the science is weak, but because the founder is missing.</p>
-    <p>We work with university tech transfer teams to turn that research into founder seats: vetted IP, standard terms, investors watching. The next cohort needs CEOs, technical co-founders, and first commercial hires.</p>
-
-    <!-- CONFIRM WITH RENÉ BEFORE LAUNCH -->
-    <blockquote>
-      <p>"You're building something that finally sees the full puzzle and clicks the pieces into place. That's what's been missing."</p>
-      <cite>Rene Jõeleht · Head of Tech Transfer, TalTech</cite>
-    </blockquote>
+  <section class="band">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">How it works</span>
+        <h2>Three steps. One honest quarter-hour.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Talk.</h3>
+          <p>Fifteen minutes with an AI that actually digs — about what you've built, what you've run, what people rely on you for. The more real detail you give it, the sharper your readout. Vague in, vague out.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>See yourself clearly.</h3>
+          <p>You get a readout: your pattern, your edge, and where you'd be genuinely dangerous. It's calibrated to what you actually showed it — confident when you've earned it, honest when you haven't. Not a horoscope.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Get found, quietly.</h3>
+          <p>If something real fits — a company to found, a team to join, a seat that never got posted — your agent brings it to you. Nothing reaches anyone without your explicit yes.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- QUIET -->
-  <section class="wrap">
-    <span class="mono eyebrow">Private by design</span>
-    <h2>Looking is dangerous.<br>So we made it invisible.</h2>
-    <p class="lede muted">Updating your LinkedIn tips off your boss. Sending a CV puts your ambition on a stranger's desk — and in their database, forever. Telling a headhunter you'd "consider a change" follows you to the next negotiation.</p>
-    <ul class="quiet-list">
-      <li>No CV required, no public profile</li>
-      <li>An AI judges you exactly zero</li>
-      <li>Your conversation builds a private profile only you control</li>
-      <li>Delete everything, any time, one tap</li>
-    </ul>
-    <p class="kicker">Curiosity should be free. Now it is.</p>
+  <section>
+    <div class="wrap">
+      <p class="contrast">LinkedIn is the record of what you've already done.<br><span class="accent">This is about what you could do next.</span></p>
+    </div>
   </section>
 
-  <!-- WHO -->
-  <section class="wrap who">
-    <span class="mono eyebrow">Who this is for</span>
-    <h2>People whose next thing doesn't fit a job title.</h2>
-    <p>Operators at scale-ups who've stopped learning. Builders shipping the 127th feature of someone else's dream. Specialists whose weird combination of skills doesn't fit any description. Researchers wondering what their work looks like from the other side.</p>
-    <p class="notfor">Not for: anyone looking for a job board. This isn't one.</p>
+  <section class="band">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">What's actually on offer</span>
+        <h2>Not a job board. The work that matters.</h2>
+      </div>
+      <p class="lede muted">The best opportunities are never advertised. We work with universities and the people building from real scientific breakthroughs — and we look for the rare people who can turn that work into something. Depending on who you are, that means:</p>
+      <ul class="offer-list stack">
+        <li><b>Founding a company</b> — taking frontier research and building the company around it.</li>
+        <li><b>Joining a founding team</b> — the early core of something with a genuine technical edge.</li>
+        <li><b>Being the first hire who makes a company</b> — the operator, the builder, the seller who turns potential into traction.</li>
+        <li><b>The right team to join</b> — matched to work that finally uses what you're good at.</li>
+      </ul>
+    </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="wrap">
-    <span class="mono eyebrow">Questions</span>
-    <h2>The fine print, in plain words.</h2>
-    <details>
-      <summary>What does it cost?</summary>
-      <p>Nothing, ever, for talent. Companies and funds pay to reach you — and only on terms you've already approved.</p>
-    </details>
-    <details>
-      <summary>Who sees my answers?</summary>
-      <p>No one, until you say yes to a specific opportunity. Your profile is private by default, and a human reviews every match before anything moves.</p>
-    </details>
-    <details>
-      <summary>Will the readout just flatter me?</summary>
-      <p>No. If we don't see founder signal, we say so — and tell you what would change our mind. The readout is only worth screenshotting because it's honest.</p>
-    </details>
-    <details>
-      <summary>What if there's no match?</summary>
-      <p>Your profile waits quietly. Opportunities arrive when they're worth your time, or not at all. You can delete everything whenever you want.</p>
-    </details>
-    <details>
-      <summary>Why deep tech first?</summary>
-      <p>Because it's the hardest matching problem and the biggest prize: real breakthroughs, missing founders. If the AI works here, it works anywhere.</p>
-    </details>
-    <details>
-      <summary>Is this compliant?</summary>
-      <p>Built for GDPR and the EU AI Act from day one: explicit consent, human review of every match, no inference of protected characteristics, full deletion rights.</p>
-    </details>
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">Private by design</span>
+        <h2>Looking is dangerous.<br>So we made it invisible.</h2>
+      </div>
+      <p class="lede muted">Updating your LinkedIn tips off your boss. Telling a headhunter you'd "consider something" follows you to the next negotiation. Exploring your options usually costs you something. Here it costs nothing.</p>
+      <ul class="quiet-list">
+        <li>It's a conversation, not an application</li>
+        <li>No public profile, no audience, nothing that follows you</li>
+        <li>An AI that assesses you and judges you exactly zero</li>
+        <li>Delete everything, anytime, one tap</li>
+      </ul>
+      <p class="kicker">Curiosity should be free. Now it is.</p>
+    </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="wrap final">
-    <h2>Fifteen minutes. A readout worth keeping. <span class="accent">Nobody has to know.</span></h2>
-    <a class="btn cta" href="#">Talk to the AI — 15 minutes</a>
-    <span class="btn-note">Free. Private. Honest.</span>
+  <section class="band who">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">Who this is for</span>
+        <h2>People who get things done — and suspect they're capable of more.</h2>
+      </div>
+      <p>Operators who've outgrown their seat. Builders shipping the next version of someone else's vision. Specialists whose real strength doesn't fit any job title. People who make things happen, in the wrong place to make the thing that matters.</p>
+      <p class="notfor">Not for: anyone looking for a job board. This isn't one.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">Questions</span>
+        <h2>The fine print, in plain words.</h2>
+      </div>
+      <details>
+        <summary>What does it cost?</summary>
+        <p>Nothing, ever, for you. Companies pay to reach you — and only on terms you've already agreed to.</p>
+      </details>
+      <details>
+        <summary>Who sees my conversation?</summary>
+        <p>No one, until you say yes to a specific opportunity. Your profile is private by default, and a human reviews any match before it ever reaches you.</p>
+      </details>
+      <details>
+        <summary>Will the readout just flatter me?</summary>
+        <p>No. It's calibrated to what you actually give it — sharp and complimentary if you've earned it, reserved if the conversation was thin. It's only worth keeping because it's honest.</p>
+      </details>
+      <details>
+        <summary>Do I need a CV?</summary>
+        <p>No. It's a conversation — you talk about what you've done, in your own words. If you want an even sharper read you can paste your background in, but nothing is required and nothing is made public.</p>
+      </details>
+      <details>
+        <summary>What if there's no match?</summary>
+        <p>Your profile waits quietly. Opportunities arrive when they're worth your time, or not at all. You can delete everything whenever you want.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="band final">
+    <div class="wrap">
+      <h2>Fifteen minutes. A readout worth keeping. <span class="accent">Nobody has to know.</span></h2>
+      <a class="btn cta" href="#">Start the conversation — 15 minutes</a>
+      <span class="btn-note">Free. Private. Honest.</span>
+    </div>
   </section>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <p class="emp"><strong>Need someone exceptional?</strong> Our agents talk to the best candidates instantly — you see terms before faces. <a href="mailto:enn@deepcatalyst.eu?subject=Early%20access%20—%20employer">Get early access</a></p>
-    <p class="legal">DEEP CATALYST · TALLINN · PRIVATE BY DEFAULT · GDPR &amp; EU AI ACT ALIGNED · © 2026</p>
+    <p class="emp"><strong>Hiring for something exceptional?</strong> We bring you people most searches never surface — and you agree terms before you ever see a name. <a href="mailto:enn@deepcatalyst.eu?subject=Early%20access%20—%20hiring">Get early access</a></p>
+    <p class="legal">DEEP CATALYST · PRIVATE BY DEFAULT · DELETE ANYTIME · © 2026</p>
   </div>
 </footer>
 
 <script>
-  // ── 1. SET YOUR INTERVIEW LINK HERE (Tally form, chat app, anything) ──
-  const CTA_URL = "https://chat-deepcatalyst.replit.app/"; // e.g. "https://tally.so/r/xxxxx"
+  const CTA_URL = "https://chat-deepcatalyst.replit.app/";
+  document.querySelectorAll(".cta").forEach(a => { a.href = CTA_URL; });
 
-  document.querySelectorAll(".cta").forEach(a => {
-    if (CTA_URL) { a.href = CTA_URL; }
-    else {
-      a.addEventListener("click", e => {
-        e.preventDefault();
-        alert("Almost live: set CTA_URL at the top of the script in index.html to your interview link.");
-      });
-    }
-  });
-
-  // ── 2. Redaction reveal when the dossier scrolls into view ──
   const d = document.getElementById("dossier");
   if ("IntersectionObserver" in window && d) {
     new IntersectionObserver((entries, obs) => {
